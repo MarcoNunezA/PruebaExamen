@@ -5,6 +5,8 @@
   
  require_once 'LIGA3/LIGA.php'; 
   
+   BD('localhost', 'root', '', 'base');
+
   HTML::cabeceras(array('title'=>'Sistema seguro', 'description'=>'Lo que sea...'));
   
   
@@ -12,7 +14,12 @@
   $body = array('contenedor'=>array('uno'=>'<p>Usuario válido</p>',
                                     'dos'=>'<a href="cerrar.php">Cerrar sesión</a>'));
   
+  $usuarios = LIGA('usuarios');
+  $columnas = ('id,nombre,fecha');
+  HTML::tabla($usuarios, 'USUARIOS',$columnas);
+  
   HTML::cuerpo($body);
+  
   
   HTML::pie();
  } else {
