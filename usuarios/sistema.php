@@ -13,10 +13,13 @@
   
   $body = array('contenedor'=>array('uno'=>'<p>Usuario válido</p>',
                                     'dos'=>'<a href="cerrar.php">Cerrar sesión</a>'));
-  
-  $usuarios = LIGA('usuarios');
-  $columnas = ('id,nombre,fecha');
-  HTML::tabla($usuarios, 'USUARIOS',$columnas);
+ 
+   $usuarios = LIGA('usuarios');
+ 
+  $cols = array('id' => '@[id]','nombre','hora' => '@{substr("@[fecha]", 11, 19)}@');
+
+
+  HTML::tabla($usuarios, 'USUARIOS',$cols);
   
   HTML::cuerpo($body);
   
